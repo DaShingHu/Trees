@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class TreeTest{
+    // Author: dustin Hu
+    // Date: 19-01-2015
+    // Purpose: To demontstrate the tree class
+    // Methods: Main: The main
+    
+    // Data fields: None
+
+    public static void main (String [] args){
+	// Author: Dustin Hu
+	// Date: 19-01-2015
+	// Purpose: To demonstrate the Tree clss
+	// Input: None
+	// Output: None
+	boolean loop = true;
+	BufferedReader input = new BufferedReader(
+						  new InputStreamReader(System.in));
+	String input;
+	TreeNode tree = new TreeNode()
+	System.out.println("Hello, welcome to the Tree Tester");
+	while (loop){
+	    System.out.println("Your options are as follow: ");
+	    System.out.println("1) Print your tree in order");
+	    System.out.println("2) Print your tree post order");
+	    System.out.println("3) Print your tree pre order");
+	    System.out.println("4) Print your tree breadth order");
+	    System.out.println("5) Add a node to your tree");
+	    System.out.println("6) Delete a node from you tree");
+	}
+    }
+}

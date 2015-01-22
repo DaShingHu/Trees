@@ -1,0 +1,315 @@
+
+
+
+
+public class Tree{
+        /*
+      AUthor: Dustin Hu
+      Date: 13-01-2015
+      Purpose: To be the tree class
+
+      Methods:
+          Tree: Creates the node, no parametrs
+	  Tree: Creates the node, a value parameter
+	  inOrder: Gets the string of the tree (In-ordered)
+	  preOrder: Gets the string of the tree (Pre-ordered)
+	  postOrder: Gets the string of the tree (Post-ordered);
+	  height: Returns the height of the tree from the root
+	  nodes: Gets the number of nodes below (including this one) the current tree
+	  heightBalanced: Checks if the tree is height balanced 
+	  perfectlyBalanced: Checks if this tree is perfectly balanced
+	  breadthOrder: Gets the string in breadth order
+	  inTree: Checks if a value is in the tree
+	  add: Adds a new node
+	  delete: Delets a node
+	  isLeaf: Checks if this onde is a leaf
+	  sibling: Returns the sibling of the given integer
+
+	  rotateLeft: Rotates the tree left, given an address
+	  rotateRight: Rotates the tree right, given an address
+	  
+	  find: Finds the node
+
+	  rotateLeft: Rotates the tree left, given an integer
+	  rotateRight: Rotates the tree right, given an integer
+
+     Data fields:
+         root: the root
+
+	*/
+    protected TreeNode root;
+
+    
+    public Tree(){
+	// Author: Dustin Hu
+	// Date: 13-01-2015
+	// Purpose: To create the tree
+	// Input: None
+	// Output: None
+	this(0);
+    }
+    public Tree(int data){
+	// Author: Dustin Hu
+	// Date: 13-01-2015
+	// Purpose: To create the tree
+	// Input: The value of the node
+	// Output: None
+	this.root = new TreeNode(data);
+
+    }
+    public String inOrder(){
+	// AUthor: Dustin Hu
+	// Date: 13-01-2015
+	// Purpose: To get the in order string of the Node
+	// Input: None
+	// Output: The string of the node, in the order of left-data-right
+	return this.root.inOrder();
+    }
+    public String preOrder(){
+	// AUthor: Dustin Hu
+	// Date: 13-01-2015
+	// Purpose: To get the pre order string of the Node
+	// Input: None
+	// Output: The string of the node, in the order of data-left-right
+	return this.root.preOrder();
+
+    }
+    public String postOrder(){
+	// Author: Dsutin Hu
+	// Date: 14-01-2015
+	// Purpose: To get the string of the node in post order
+	// Input: None
+	// OUtput: The string of this tree in post-order notation
+	return this.root.postOrder();
+	
+    }
+    public int height (){
+	// Author: dusitn Hu
+	// Date: 14-01-2015
+	// Purpose: To get the height from this tree
+	// Input: None
+	// Output: The height from this node
+	return this.root.height();
+
+    }
+    public int nodes(){
+	// Author: Dustin Hu
+	// Date: 14-01-2015
+	// Purpose: To call the recursive node counter
+	// Input: None
+	// Output: The number of nodes in this tree
+	return this.root.nodes();
+    }
+    public boolean heightBalanced(){
+	// AutohR: Dustin Hu
+	// Date: 15-01-2015
+	// Purpoes: To check if this tree is height balanced
+	// Input: None
+	// Output: Boolean true if this is balanced, false if not
+	return this.root.heightBalanced();
+	    
+    }
+    public boolean perfectlyBalanced(){
+	// Author; Dustin Hu
+	// Date: 15-01-2015
+	// Purpose: To check whetehr or not the tree is perfectly balanced
+	// Input: None
+	// Output: True if perfectly balanced, false if not
+	return this.root.perfectlyBalanced();
+    }
+    public String breadthOrder(){
+    	// Authr: DUsitn Hu
+    	// Date: 15-01-2015
+    	// Purpose: To get the string of the tree i nbreadth order
+    	// Input: None
+   	// Output: The string of the tre in breadth order
+	return this.root.breadthOrder();
+    }
+    public boolean inTree(int input){
+	// Author :Dustin Hu
+	// Date: 16-01-2015
+	// Purpose: To check if a value is in the tree
+	// Input: The value to check for
+	// OUtput: True if the value is in the tree, false otherwise
+	return this.root.inTree(input);
+    }
+    public void add(int input){
+	// Autohr: Dustin Hu
+	// Date: 16-01-2015
+	// Purpose: To add an integer
+	// Input: The integer to add
+	// Output: None
+	this.root.add(input);
+    }
+    public void delete(int input){
+	// Author: Dustin Hu
+	// Date: 16-01-2015
+	// Purpoes: To delete a node from the tree
+	// Input: THe node to delete
+	// OUtput: None
+	this.root.delete(input);
+    }
+    public TreeNode sibling(int input){
+	// Author: Dustin Hu
+	// date: 19-01-2015
+	// Purpoes: To get the sibling of the given integer
+	// Input: The integer to find a sibling of
+	// OUtput: Null if tehre is no sibling, otherwise the node's address
+	return this.root.sibling(input);
+    }
+
+    private boolean rotateLeft(TreeNode pivot){
+	// Author: Dustin Hu & Jacky Xao
+	// Date: Jan 21 2015
+	// Purpose: To rotate the pivot point left
+	// Input: Node of the pivot point
+	// Output: True if succesful rotation
+	boolean rotate = false;
+	
+	if (pivot != null && pivot.right != null){
+	    rotate = true;
+	    boolean loop = true;
+	    TreeNode newRoot = pivot.right;
+	    TreeNode pivotNewRight = newRoot.left;
+	    newRoot.left = pivot;
+	    pivot.right = pivotNewRight;
+	    
+	    if (pivot == this.root){
+		this.root = newRoot;
+	    }
+	    else{
+		TreeNode parent = this.root;
+		while (loop){
+		    if (pivot.data > parent.data){
+			if (pivot.data == parent.right.data){
+			    loop = false;
+			}
+			else{
+			    parent = parent.right;
+			}
+		    }
+		    else if (pivot.data < parent.data){
+			if (pivot.data == parent.left.data){
+			    loop = false;
+			}
+			else{
+			    parent = parent.left;
+			}
+		    }
+		    else{
+			parent = null;
+		    }
+		}
+		if (pivot.data > parent.data){
+		    parent.right = newRoot;
+		}
+		else{
+		    parent.left = newRoot;
+		}
+	    }
+	}
+	return rotate;
+
+    }
+    private boolean rotateRight(TreeNode pivot){
+	// Author: Dustin Hu & Jacky Xao
+	// Date: Jan 21 2015
+	// Purpose: To rotate the pivot point right
+	// Input: Node of the pivot point
+	// Output: True if succesful rotation
+	boolean rotate = false;
+	
+	if (pivot != null && pivot.left != null){
+	    rotate = true;
+	    boolean loop = true;
+	    TreeNode newRoot = pivot.left;
+	    TreeNode pivotNewLeft = newRoot.right;
+	    newRoot.right = pivot;
+	    pivot.left = pivotNewLeft;
+	    
+	    if (pivot == this.root){
+		this.root = newRoot;
+	    }
+	    else{
+		TreeNode parent = this.root;
+		while (loop){
+		    if (pivot.data > parent.data){
+			if (pivot.data == parent.right.data){
+			    loop = false;
+			}
+			else{
+			    parent = parent.right;
+			}
+		    }
+		    else if (pivot.data < parent.data){
+			if (pivot.data == parent.left.data){
+			    loop = false;
+			}
+			else{
+			    parent = parent.left;
+			}
+		    }
+		    else{
+			parent = null;
+		    }
+		}
+		if (pivot.data > parent.data){
+		    parent.right = newRoot;
+		}
+		else{
+		    parent.left = newRoot;
+		}
+	    }
+	}
+	return rotate;
+
+    }
+    public TreeNode find(int input){
+	// Author: Dustin hu
+	// Date: 21-01-2015
+	// Purpsoe: To find the tree node of the inptu
+	// Input: the number to find
+	// Output: A address if it exists, null otherwise
+	TreeNode output = null;
+	if (this.inTree(input)){
+	    TreeNode current = this.root;
+	    while (current.data != input){
+		if (input > current.data){
+		    current = current.right;
+		}
+		else{
+		    current = current.left;
+		}
+	    }
+	    output = current;
+	}
+
+	return output;
+    }
+
+    public boolean rotateLeft(int input){
+	// Author: Dsutin Hu
+	// Date: 21-01-2015
+	// Purpose: To rotate the tree left
+	// Input: The integer to rotate at
+	// Output: False if not rotated or node does not exist
+	boolean output = false;
+	if (this.inTree(input)){
+	    output = this.rotateLeft(this.find(input));
+	}
+	return output;
+    }
+    public boolean rotateRight(int input){
+	// Author: Dsutin Hu
+	// Date: 21-01-2015
+	// Purpose: To rotate the tree right
+	// Input: The integer to rotate at
+	// Output: False if not rotated or node does not exist
+	boolean output = false;
+	if (this.inTree(input)){
+	    output = this.rotateRight(this.find(input));
+	}
+	return output;
+    }
+
+}
