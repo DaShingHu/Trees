@@ -520,7 +520,7 @@ public class Tree{
 	// Output: None
 	Queue[] temp = this.getAllNodesSortedByLevel();
 	for (int i = 0; i < temp.length; i++){
-	    System.out.println(this.prettifyLevel(temp[i], i + 1, this.height() ));
+	    System.out.println(this.prettifyLevel(temp[i], i , this.height()));
 	    System.out.println("");
 	}
     }
